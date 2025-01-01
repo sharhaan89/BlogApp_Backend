@@ -76,7 +76,7 @@ router.get("/viewall", async (req: Request, res: Response) => {
                 title: blogs.title,
                 content: blogs.content,
                 authorId: blogs.authorId,
-                authorName: users.username,  // Changed from author to authorName
+                authorName: users.username,
                 createdAt: blogs.createdAt,
                 updatedAt: blogs.updatedAt,
             })

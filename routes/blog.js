@@ -81,7 +81,7 @@ router.get("/viewall", (req, res) => __awaiter(void 0, void 0, void 0, function*
             title: schema_1.blogs.title,
             content: schema_1.blogs.content,
             authorId: schema_1.blogs.authorId,
-            authorName: schema_1.users.username, // Changed from author to authorName
+            authorName: schema_1.users.username,
             createdAt: schema_1.blogs.createdAt,
             updatedAt: schema_1.blogs.updatedAt,
         })
