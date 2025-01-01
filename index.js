@@ -18,10 +18,10 @@ app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, express_session_1.default)({
     secret: process.env.SECRET_KEY || 'GRUMPY',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
-        secure: process.env.NODE_ENV === 'production',
-        httpOnly: true,
+        secure: true,
+        sameSite: 'none',
     },
 }));
 app.use(passport_1.default.initialize());
