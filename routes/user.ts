@@ -1,5 +1,5 @@
 import db from "../db";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 import { eq } from "drizzle-orm";
 import { users } from "../schema";

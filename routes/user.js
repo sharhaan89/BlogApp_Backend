@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = __importDefault(require("../db"));
-const bcrypt_1 = __importDefault(require("bcrypt"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const drizzle_orm_1 = require("drizzle-orm");
 const schema_1 = require("../schema");
@@ -39,7 +39,7 @@ router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 error: "user not found",
             });
         }
-        const isPasswordValid = yield bcrypt_1.default.compare(password, user[0].password);
+        const isPasswordValid = yield bcryptjs_1.default.compare(password, user[0].password);
         if (!isPasswordValid) {
             return res.status(401).json({
                 error: "invalid credentials",
@@ -69,7 +69,7 @@ router.post("/register", (req, res) => __awaiter(void 0, void 0, void 0, functio
         });
     }
     try {
-        const hashedPassword = yield bcrypt_1.default.hash(password, 10);
+        const hashedPassword = yield bcryptjs_1.default.hash(password, 10);
         const newUser = yield db_1.default
             .insert(schema_1.users)
             .values({
