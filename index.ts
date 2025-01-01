@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 import session from "express-session";
 import userRoutes from "./routes/user";
 import blogRoutes from "./routes/blog";
@@ -12,25 +11,21 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));  
+
+// Session handling
 app.use(session({
   secret: process.env.SECRET_KEY || 'GRUMPY',
   resave: false,
   saveUninitialized: true,
   cookie: {
-    secure: true,
+    secure: false,
     sameSite: 'none',
   },
 }));
 
-
+// Passport setup
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(cors({
-  origin: '*',
-  methods: 'GET,POST,PUT,DELETE',
-  credentials: true,
-}));
 
 app.get("/", (req, res) => {
   return res.redirect("/user/login"); 
@@ -40,5 +35,5 @@ app.use("/user", userRoutes);
 app.use("/blog", blogRoutes);
 
 app.listen(PORT, () => {
-  console.log("server running on port: ", PORT);
+  console.log("Server running on port: ", PORT);
 });
